@@ -1,0 +1,39 @@
+{
+  "name": "taliesin",
+  "version": "0.0.1",
+  "author": "Aurélien Thieriot",
+  "keywords": [
+    "Software factory tool"
+  ],
+  "description": "Software factory easying tool",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/tombell/hubot-twilio/raw/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/athieriot/taliesin.git"
+  },
+  "dependencies": {
+    "commander": "0.5.1",
+    "winston": "0.5.10",
+    "props": "0.2.3",
+    "coffee-script": "1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "0.10.1",
+    "should": "0.6.0"
+  },
+  "bin": {
+     "tal": "./tal.coffee"
+  },
+  "scripts": {
+       "test": "mocha"
+  },
+  "engine": "node > 0.6.0 < 0.7.0",
+  "engines": {
+    "node": "*"
+  }
+}
