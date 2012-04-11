@@ -1,36 +1,23 @@
 {
-  "name": "taliesin",
-  "version": "0.0.1",
+  "name": "games",
+  "version": "1.0",
   "author": "Aurélien Thieriot",
   "keywords": [
-    "Software factory tool"
+    "Simple sample commander games wing"
   ],
-  "description": "Software factory easying tool",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/tombell/hubot-twilio/raw/master/LICENSE"
-    }
-  ],
+  "description": "Simple game sample for commander.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/athieriot/taliesin.git"
+    "url": "git://github.com/athieriot/wing-commander-js.git"
   },
   "dependencies": {
     "commander": "0.5.1",
-    "winston": "0.5.10",
-    "props": "0.2.3",
     "coffee-script": "1.2.0"
   },
   "devDependencies": {
-    "mocha": "0.10.1",
-    "should": "0.6.0"
   },
   "bin": {
-     "tal": "./tal.coffee"
-  },
-  "scripts": {
-       "test": "mocha"
+     "games": "./games.coffee"
   },
   "engine": "node > 0.6.0 < 0.7.0",
   "engines": {
