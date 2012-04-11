@@ -53,7 +53,7 @@
 </section>
 
 <section class="slide" id="basics">
-   <h2>Les trucs de base</h2>
+   <h2>La base</h2>
    <ol style="list-style-type: none;">
       <li>
          <h4>Parsing d'arguments</h4>
@@ -81,11 +81,11 @@ program = require 'commander'
 
             </code>
          </pre>
-         <pre style="float: left;margin-left:20px">
+         <pre style="float: left;margin-left:5px">
             <code>
- $ <span style="color:red;font-weight:bold;">./wing.coffee --help</span>
+ $ <span style="color:red;font-weight:bold;">./games.coffee --help</span>
 
-Usage: wing.coffee [options]
+Usage: games.coffee [options]
 
 Options:
 
@@ -107,24 +107,24 @@ console.log "- Is of #{<span style="color:red;font-weight:bold;">program.year</s
 console.log "- Is the opus #{<span style="color:red;font-weight:bold;">program.opusNumber</span>}"
 console.log "- Can be found for #{<span style="color:red;font-weight:bold;">program.console</span>}"
 
-for wc in wingCommanders
-   do (wc) ->
-      if program.dos is wc.dos and
-            program.year is wc.year and
-            program.opus is wc.opusNumber and 
-            program.console in wc.consoles
-         console.log "Its #{wc.name}" 
+for game in games
+   do (game) ->
+      if program.dos is game.dos and
+            program.year is game.year and
+            program.opus is game.opusNumber and 
+            program.console in game.consoles
+         console.log "Its #{game.name}" 
             </code>
          </pre>
-         <pre style="float: left;margin-left:20px">
+         <pre style="float: left;margin-left:5px">
             <code>
-$ ./wing.coffee <span style="color:red;font-weight:bold;">-dc</span> amiga <span style="color:red;font-weight:bold;">-o</span> I <span style="color:red;font-weight:bold;">--year</span> 1990
+$ ./games.coffee <span style="color:red;font-weight:bold;">-dc</span> amiga <span style="color:red;font-weight:bold;">-o</span> I <span style="color:red;font-weight:bold;">--year</span> 1990
 Your game :
 - Run on MSDOS
 - Is of 1990
 - Is the opus I
 - Can be found for amiga
-Its Wing Commander
+Its Wing Commander !
 
 
 
@@ -138,20 +138,66 @@ Its Wing Commander
 </section>
 
 <section class="slide" id="more">
-   <h2>Les trucs en plus</h2>
+   <h2>Mon préféré</h2>
    <ol style="list-style-type: none;">
       <li>
-         <h4>Permet l'écriture de "commandes"</h4>
+         <h4>L'écriture de "commandes"</h4>
       </li>
-      <li>
-         <h4>Prompt d'entrées utilisateur</h4>
-      </li>
-      <li class="slide" id="basic-code-get">
+      <li class="slide" id="more-code">
          <pre style="float: left;margin-left: -70px;">
             <code>
+program
+   <span style="color:red;font-weight:bold;">.command('list [console]')</span>
+   <span style="color:red;font-weight:bold;">.description</span>('list all games filter by console')
+   <span style="color:red;font-weight:bold;">.action (cons) -></span>
+      for game in games
+         do (game) ->
+            if not cons? or cons in game.consoles
+            console.log "- #{game.name}"
+
+<span style="color:red;font-weight:bold;">program.parse(process.argv)</span>
+
+
 
             </code>
          </pre>
+         <pre style="float: left;margin-left: 5px;">
+            <code>
+$ ./games.coffee --help
+
+Commands:
+
+   <span style="color:red;font-weight:bold;">list [console]</span>
+   list all games filter by console
+   ...
+
+$ <span style="color:red;font-weight:bold;">./games.coffee list</span>
+
+- Wing Commander
+- Wing Commander II
+- Wing Commander III
+            </code>
+         </pre>
+      </li>
+   </ol>
+</section>
+
+<section class="slide" id="next">
+   <h2>Mais aussi</h2>
+   <ol style="list-style-type: none;">
+      <li>
+         <h3>Prompt d'entrées utilisateur</h4>
+         <ol style="list-style-type: none;">
+            <li>
+               <h4>Simples string</h4>
+               <h4>Multiligne</h4>
+               <h4>Coercion (cool pour les dates)</h4>
+               <h4>Password (masques)</h4>
+               <h4>Confirmation (oui/non)</h4>
+               <h4>Choix dans une liste</h4>
+            </li>
+         </ol>
+      </li>
    </ol>
 </section>
 
@@ -174,6 +220,7 @@ Its Wing Commander
    <li>
       Me :
       Aurélien Thieriot
+      (<a href="http://athieriot.github.com/resume">http://athieriot.github.com/resume</a>)
    </li>
    <li>
       Twitter :
@@ -184,8 +231,8 @@ Its Wing Commander
       <a href="https://github.com/athieriot">github/athieriot</a>
    </li>
    <li>
-      CV :
-      <a href="http://athieriot.github.com/resume">http://athieriot.github.com/resume</a>
+      Prez powered by :
+      <a href="http://imakewebthings.com/deck.js/">deck.js</a>
    </li>
 </ol>
    <img src="./funny.jpg" alt="Mark" style="width: 580px;height: 370px;">
