@@ -1,5 +1,8 @@
 #!/usr/bin/env coffee
 
+#
+# Requirement
+#
 program = require 'commander'
 
 #
@@ -27,17 +30,42 @@ games = [
    }
 ]
 
-consoles = (list) ->
-   list.split ','
-
+#
+# Declaration of all the options
+#
 program
    .version('1.0')
    .option('-o, --opus-number [number]', 'Wich opus')
-   .option('-y, --year [year]', 'Wich year', Number)
+   .option('-y, --year [year]', 'Which year', Number)
+   #Type coersion can be a function
+   #A last argument can be the default value
    .option('-d, --dos', 'Run on MSDOS')
-   .option('-c, --console [console]', 'On wich consoles')
+   .option('-c, --console [console]', 'On which consoles')
 
+program.on '--help', () ->
+   console.log '  Pour la démo:'
+   console.log ''
+   console.log '  ./games.coffee --help'
+   console.log '  ./games.coffee list'
+   console.log '  ./games.coffee list amiga'
+   console.log '  ./games.coffee search -o I --year 1990 -dc amiga'
+   console.log '  ./games.coffee choose'
 
+#
+# A simple command
+#
+program
+   .command('list [console]')
+   .description('list all games filter by console')
+   .action (cons) ->
+      for game in games
+         do (game) ->
+            if not cons? or cons in game.consoles
+               console.log "- #{game.name}"
+
+#
+# Argument analysis
+#
 program
    .command('search')
    .description('search games by arguments')
@@ -56,13 +84,21 @@ program
                   program.console in game.consoles
                console.log "Its #{game.name} !"   
 
+#
+# Prompt sample
+#
 program
-   .command('list [console]')
-   .description('list all games filter by console')
-   .action (cons) ->
-      for game in games
-         do (game) ->
-            if not cons? or cons in game.consoles
-               console.log "- #{game.name}"
+   .command('choose')
+   .description('Choose your favorite game')
+   .action () ->
+      console.log 'Choose your favorite game:'
+      gamesName = (game.name for game in games)
 
+      program.choose gamesName, (i) ->
+         console.log "Hey, my favorite is #{games[i].name} too !"
+         process.exit 0
+
+#
+# Parsing needed
+#
 program.parse(process.argv)

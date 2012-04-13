@@ -37,6 +37,33 @@
 <body class="deck-container">
 
 <!-- Begin slides -->
+<section class="slide" id="demo">
+<h2>Me</h2>
+<ol style="list-style-type: none;">
+   <li>
+      <strong>Aurélien Thieriot - Java / Web Developer -</strong>
+   </li>
+   <li>
+      Twitter :
+      <strong><a href="https://twitter.com/#!/a_thieriot">@a_thieriot</a></strong>
+   </li>
+   <li>
+      Github :
+      <strong><a href="https://github.com/athieriot">github/athieriot</a></strong>
+   </li>
+   <li>
+      <strong>In case you searching for a developer in Cardiff :  </strong>
+      - <a href="http://athieriot.github.com/resume">http://athieriot.github.com/resume</a> -
+   </li>
+</ol>
+   <img src="./funny.jpg" alt="Mark" style="float: right; width: 360px;height: 250px; margin-top: 130px;">
+   <div style="margin-top: 350px;">
+      <strong>Prez powered by :</strong>
+      <a href="http://imakewebthings.com/deck.js/">deck.js</a>
+      , Mark Hamill et Professeur Arturo
+   </div>
+</section>
+
 <section class="slide" id="title-slide">
    <h1>(Wing) commander.js</h1>
    <ol style="list-style-type: none;padding-top:500px;">
@@ -46,145 +73,69 @@
       <li class="slide" id="comment" style="background-color:transparent;margin-left: 100px;">
          <h3>en node.js<h3>
       </li>
-      <li class="slide" id="comment" style="background-color:transparent;margin-left: 200px;">
-         <h3>(inspiré d'une gem Ruby du même nom)<h3>
+   </ol>
+</section>
+
+<section class="slide" id="who-slide">
+   <h2>Par qui ?</h2>
+   <ol style="list-style-type: none;">
+      <li>
+         <h3><img src="tj.png" style="float: left; margin-right: 10px;"></img><h3>
+      </li>
+      <li>
+         <h3>@tjholowaychuk / Visonmedia<h3>
+      </li>
+      <li class="slide" id="express-tj" style="clear:both;background-color:transparent;margin-left: 100px;">
+         <h3>Express<h3>
+      </li>
+      <li class="slide" id="mocha-tj" style="background-color:transparent;margin-left: 200px;">
+         <h3>Mocha<h3>
+      </li>
+      <li class="slide" id="jade-tj" style="background-color:transparent;margin-left: 300px;">
+         <h3>Jade<h3>
+      </li>
+      <li class="slide" id="joke-tj" style="background-color:transparent;margin-left: 400px;">
+         <h3>Le vaccin contre le cancer (Il parait)<h3>
       </li>
    </ol>
 </section>
 
 <section class="slide" id="basics">
-   <h2>La base</h2>
+   <h2>Les bases</h2>
    <ol style="list-style-type: none;">
       <li>
-         <h4>Parsing d'arguments</h4>
+         <h3>Parsing d'arguments</h3>
+         <ol style="list-style-type: none;">
+            <li><h4>arguments courts</h4></li>
+            <li><h4>longs</h4></li>
+            <li><h4>booleens</h4></li>
+            <li><h4>valeurs par défaut</h4></li>
+         </ol>
       </li>
       <li>
-         <h4>Generation d'aide (personnalisable)</h4>
+         <h3>Generation d'aide</h3>
+         <ol style="list-style-type: none;">
+            <li><h4>automatique</h4></li>
+            <li><h4>personnalisable</h4></li>
+         </ol>
       </li>
       <li>
-         <h4>Typage (Coercion)</h4>
-      </li>
-      <li class="slide" id="basic-code">
-         <pre style="float: left;margin-left: -70px;">
-            <code>
-#!/usr/bin/env coffee
-
-program = require 'commander'
-
-<span style="color:red;font-weight:bold;">program</span>
-   .version('1.0')
-   <span style="color:red;font-weight:bold;">.option</span>('-o, --opus-number [number]', 'Wich opus')
-   .option(<span style="color:red;font-weight:bold;">'-y, --year [year]'</span>, 'Wich year', <span style="color:red;font-weight:bold;">Number</span>)
-   .option('-d, --dos', 'Run on MSDOS')
-   .option('-c, --console [console]', 'On wich consoles')
-   <span style="color:red;font-weight:bold;">.parse(process.argv)</span>
-
-            </code>
-         </pre>
-         <pre style="float: left;margin-left:5px">
-            <code>
- $ <span style="color:red;font-weight:bold;">./games.coffee --help</span>
-
-Usage: games.coffee [options]
-
-Options:
-
-   -h, --help                  output usage information
-   -V, --version               output the version number
-   -o, --opus-number [number]  Wich opus
-   -y, --year [year]           Wich year
-   -d, --dos                   Run on MSDOS
-   -c, --console [console]     On wich consoles
-            </code>
-         </pre>
-      </li>
-      <li class="slide" id="basic-code-get">
-         <pre style="float: left;margin-left: -70px;">
-            <code>
-console.log 'Your game :'                                                             
-if <span style="color:red;font-weight:bold;">program.dos</span> then console.log '- Run on MSDOS'
-console.log "- Is of #{<span style="color:red;font-weight:bold;">program.year</span>}"
-console.log "- Is the opus #{<span style="color:red;font-weight:bold;">program.opusNumber</span>}"
-console.log "- Can be found for #{<span style="color:red;font-weight:bold;">program.console</span>}"
-
-for game in games
-   do (game) ->
-      if program.dos is game.dos and
-            program.year is game.year and
-            program.opus is game.opusNumber and 
-            program.console in game.consoles
-         console.log "Its #{game.name}" 
-            </code>
-         </pre>
-         <pre style="float: left;margin-left:5px">
-            <code>
-$ ./games.coffee <span style="color:red;font-weight:bold;">-dc</span> amiga <span style="color:red;font-weight:bold;">-o</span> I <span style="color:red;font-weight:bold;">--year</span> 1990
-Your game :
-- Run on MSDOS
-- Is of 1990
-- Is the opus I
-- Can be found for amiga
-Its Wing Commander !
-
-
-
-
-
-
-            </code>
-         </pre>
+         <h3>Typage (Coercion)</h3>
       </li>
    </ol>
 </section>
 
 <section class="slide" id="more">
-   <h2>Mon préféré</h2>
+   <h2>Les plus</h2>
    <ol style="list-style-type: none;">
       <li>
-         <h4>L'écriture de "commandes"</h4>
+         <h3>L'écriture de "commandes"</h3>
+         <ol style="list-style-type: none;">
+            <li>
+               <h4>Dans ce genre là : <strong>'git clone mon@super:repo/a.moi'</strong></h4>
+            </li>
+         </ol>
       </li>
-      <li class="slide" id="more-code">
-         <pre style="float: left;margin-left: -70px;">
-            <code>
-program
-   <span style="color:red;font-weight:bold;">.command('list [console]')</span>
-   <span style="color:red;font-weight:bold;">.description</span>('list all games filter by console')
-   <span style="color:red;font-weight:bold;">.action (cons) -></span>
-      for game in games
-         do (game) ->
-            if not cons? or cons in game.consoles
-            console.log "- #{game.name}"
-
-<span style="color:red;font-weight:bold;">program.parse(process.argv)</span>
-
-
-
-            </code>
-         </pre>
-         <pre style="float: left;margin-left: 5px;">
-            <code>
-$ ./games.coffee --help
-
-Commands:
-
-   <span style="color:red;font-weight:bold;">list [console]</span>
-   list all games filter by console
-   ...
-
-$ <span style="color:red;font-weight:bold;">./games.coffee list</span>
-
-- Wing Commander
-- Wing Commander II
-- Wing Commander III
-            </code>
-         </pre>
-      </li>
-   </ol>
-</section>
-
-<section class="slide" id="next">
-   <h2>Mais aussi</h2>
-   <ol style="list-style-type: none;">
       <li>
          <h3>Prompt d'entrées utilisateur</h4>
          <ol style="list-style-type: none;">
@@ -200,11 +151,15 @@ $ <span style="color:red;font-weight:bold;">./games.coffee list</span>
       </li>
    </ol>
 </section>
+   
+<section class="slide" id="demo">
+   <h2>Démo</h2>
+</section>
 
 <section class="slide" id="alternatives">
    <h2>Les alternatives</h2>
    <ol style="list-style-type: none;">
-      <li><h3>optimist</h3></li>
+      <li><h3>optimist (utilisé par npm)</h3></li>
       <li><h3>nomnom</h3></li>
       <li><h3>celeri</h3></li>
       <li><h3>node-operetta</h3></li>
@@ -212,31 +167,13 @@ $ <span style="color:red;font-weight:bold;">./games.coffee list</span>
       <li><h3>...</h3></li>
       <li><h3><a href="https://github.com/joyent/node/wiki/modules#wiki-parsers-commandline">https://github.com/joyent/node/wiki/modules#wiki-parsers-commandline</a></h3></li>
    </ol>
-</section>
+   </section>
 
-<section class="slide" id="demo">
-<h2>Merci</h2>
-<ol style="list-style-type: none;">
-   <li>
-      Me :
-      Aurélien Thieriot
-      (<a href="http://athieriot.github.com/resume">http://athieriot.github.com/resume</a>)
-   </li>
-   <li>
-      Twitter :
-      <a href="https://twitter.com/#!/a_thieriot">@a_thieriot</a>
-   </li>
-   <li>
-      Github : 
-      <a href="https://github.com/athieriot">github/athieriot</a>
-   </li>
-   <li>
-      Prez powered by :
-      <a href="http://imakewebthings.com/deck.js/">deck.js</a>
-   </li>
-</ol>
-   <img src="./funny.jpg" alt="Mark" style="width: 580px;height: 370px;">
-   <h3>OMG! Luke Skywalker et le professeur Arturo</h3>
+<section class="slide" id="link">
+   <h2>Let's do it</h2>
+   <ol>
+      <h3><a href="https://github.com/visionmedia/commander.js">https://github.com/visionmedia/commander.js</a></h3>
+   </ol>
 </section>
 
 <!-- deck.navigation snippet -->
